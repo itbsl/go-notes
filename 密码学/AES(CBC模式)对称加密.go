@@ -22,7 +22,7 @@ import (
 //plainText 明文
 //key 秘钥，大小为16byte
 func AESCBCEncrypt(plainText []byte, key []byte) (cipherText []byte, err error) {
-	//1.创建并返回一个使用DES算法的cipher.Block接口
+	//1.创建并返回一个使用AES算法的cipher.Block接口
 	//	秘钥长度为128bit,即128/8 = 16字节(byte)
 	block, err := aes.NewCipher(key)
 	if err != nil {
@@ -30,11 +30,11 @@ func AESCBCEncrypt(plainText []byte, key []byte) (cipherText []byte, err error) 
 	}
 
 	//2.对最后一个明文分组进行数据填充
-	//*DES是以128比特的明文(比特序列)为一个单位来进行加密的
+	//*AES是以128比特的明文(比特序列)为一个单位来进行加密的
 	//*最后一个如果不够128bit,则需要进行数据填充
 	plainText = PKCS5Padding(plainText, block.BlockSize())
 
-	//3.创建一个密码分组为链接模式的，底层使用DES加密的BlockMode接口
+	//3.创建一个密码分组为链接模式的，底层使用AES加密的BlockMode接口
 	//参数iv(向量)的长度，必须等于BlockSize
 	iv := []byte("IamIVIamIVIamIVI")
 	blockMode := cipher.NewCBCEncrypter(block, iv)
@@ -78,7 +78,7 @@ func AESCBCDecrypt(cipherText, key []byte) (plainText []byte, err error) {
 		return nil, err
 	}
 
-	//2.创建一个密码分组为链接模式的，底层使用DES解密的BlockMode接口
+	//2.创建一个密码分组为链接模式的，底层使用AES解密的BlockMode接口
 	iv := []byte("IamIVIamIVIamIVI")
 	blockMode := cipher.NewCBCDecrypter(block, iv)
 
