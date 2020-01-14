@@ -69,7 +69,7 @@ func PKCS5Padding(plainText []byte, blockSize int) []byte {
 }
 
 //cipherText 密文
-//key 秘钥，和加密秘钥相同,大小为:8byte
+//key 秘钥，和加密秘钥相同,大小为:16byte
 func AESCBCDecrypt(cipherText, key []byte) (plainText []byte, err error) {
 
 	//1.创建并返回一个使用AES算法的cipher.Block接口
