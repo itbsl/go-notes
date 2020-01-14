@@ -21,7 +21,6 @@ import (
 //key 秘钥，大小为16byte
 func AESCTREncrypt(plaintext []byte, key []byte) (ciphertext []byte, err error) {
 	//1.创建并返回一个使用DES算法的cipher.Block接口
-	//	秘钥长度为128bit,即128/8 = 16字节(byte)
 	block, err := aes.NewCipher(key)
 	if err != nil {
 		return nil, err
@@ -75,8 +74,8 @@ func main() {
 
 	//明文
 	plaintext := []byte("你好呀")
-	//秘钥(长度必须为16字节，因为AES加密就是按照16字节(128bit)一组加密的，规定秘钥长度和每组要加密的长度相等)
-	key := []byte("1234567890123456")
+	//秘钥,秘钥的长度可以是16字节、24字节、32字节(只能是这三种长度中的一种)
+	key := []byte("123456789012345612345678")
 	ciphertext, err := AESCTREncrypt(plaintext, key)
 	if err != nil {
 		log.Fatalf("加密出错,错误为:%v\n", err)
