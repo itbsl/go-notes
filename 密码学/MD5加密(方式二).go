@@ -20,7 +20,7 @@ func getMD5(str string) string {
 
 	//4.将数据src编码为16进制字符串s，每个字节占两位，不足补0，最终返回一个32位长度的字符串
 	//return fmt.Sprintf("%x", result)
-	return hex.EncodeToString(result[:])
+	return hex.EncodeToString(result)
 }
 
 func main() {
