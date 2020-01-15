@@ -18,6 +18,7 @@ func RSAPublicEncrypt(plaintext []byte, publicKeyFile string) []byte {
 	if err != nil {
 		log.Fatalf("os.Open()函数执行出错,错误为:%v\n", err)
 	}
+	defer file.Close()
 	fileInfo, err := file.Stat()
 	if err != nil {
 		log.Fatalf("file.Stat()方法执行出错,错误为:%v\n", err)
@@ -51,6 +52,7 @@ func RSAPrivateDecrypt(ciphertext []byte, privateKeyFile string) []byte {
 	if err != nil {
 		log.Fatalf("os.Open()函数执行出错,错误为:%v\n", err)
 	}
+	defer file.Close()
 	fileInfo, err := file.Stat()
 	if err != nil {
 		log.Fatalf("file.Stat()方法执行出错,错误为:%v\n", err)
