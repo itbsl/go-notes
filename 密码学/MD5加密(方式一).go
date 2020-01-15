@@ -7,10 +7,10 @@ import (
 )
 
 //计算MD5的方式
-func getMD5(str []byte) string {
-	//1.计算数据的md5
-	result := md5.Sum(str)
-	//将数据src编码为16进制字符串s，每个字节占两位，不足补0。
+func getMD5(data []byte) string {
+	//1.计算数据data的MD5校验和
+	result := md5.Sum(data)
+	//2.将数据src编码为16进制字符串s，每个字节占两位，不足补0。
 	return hex.EncodeToString(result[:])
 }
 
