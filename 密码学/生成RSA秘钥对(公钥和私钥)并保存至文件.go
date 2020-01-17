@@ -75,5 +75,6 @@ func GenerateRSAKey(keySize int) {
 
 func main() {
 	//生成RSA秘钥对(公钥和私钥)
-	GenerateRSAKey(1024)
+	//实际业务中将私钥长度至少应设置为2048，否则是不安全的
+	GenerateRSAKey(2048)
 }
