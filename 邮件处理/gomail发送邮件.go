@@ -31,6 +31,7 @@ func SendMail(mailTo []string, subject string, body string) error {
 	msg.SetHeader("To", mailTo...)
 	msg.SetHeader("Subject", subject)
 	msg.SetBody("text/html", body)
+	msg.Attach("/Users/itbsl/Desktop/WechatIMG1.jpeg")
 
 	dialer := gomail.NewDialer(mailConfig["host"], port, mailConfig["username"], mailConfig["password"])
 	err := dialer.DialAndSend(msg)
