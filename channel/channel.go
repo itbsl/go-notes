@@ -99,6 +99,11 @@ func closeChanTutorial() {
 	for v := range c3 {
 		fmt.Printf("获取到的值为: %v\n", v)
 	}
+
+	//关闭已经被关闭的管道会导致panic
+	var c4 = make(chan int)
+	close(c4)
+	close(c4) //会导致panic
 }
 
 func readFromChanTutorial() {
